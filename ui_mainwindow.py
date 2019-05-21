@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'mainwindow.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(964, 816)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.cvViewer = CVWidget(self.centralwidget)
+        self.cvViewer.setGeometry(QtCore.QRect(530, 10, 411, 491))
+        self.cvViewer.setObjectName("cvViewer")
+        self.graphwidget = pgWidget(self.centralwidget)
+        self.graphwidget.setGeometry(QtCore.QRect(20, 10, 481, 311))
+        self.graphwidget.setObjectName("graphwidget")
+        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox.setGeometry(QtCore.QRect(20, 730, 71, 21))
+        self.checkBox.setObjectName("checkBox")
+        self.surfaceButton = QtWidgets.QPushButton(self.centralwidget)
+        self.surfaceButton.setGeometry(QtCore.QRect(100, 730, 75, 23))
+        self.surfaceButton.setObjectName("surfaceButton")
+        self.calibrateButton = QtWidgets.QPushButton(self.centralwidget)
+        self.calibrateButton.setGeometry(QtCore.QRect(180, 730, 75, 23))
+        self.calibrateButton.setObjectName("calibrateButton")
+        self.refreshButton = QtWidgets.QPushButton(self.centralwidget)
+        self.refreshButton.setGeometry(QtCore.QRect(520, 540, 75, 23))
+        self.refreshButton.setObjectName("refreshButton")
+        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox.setGeometry(QtCore.QRect(600, 540, 69, 22))
+        self.comboBox.setObjectName("comboBox")
+        self.serialLabel = QtWidgets.QLabel(self.centralwidget)
+        self.serialLabel.setGeometry(QtCore.QRect(680, 540, 181, 21))
+        self.serialLabel.setObjectName("serialLabel")
+        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
+        self.progressBar.setGeometry(QtCore.QRect(520, 600, 191, 23))
+        self.progressBar.setProperty("value", 0)
+        self.progressBar.setObjectName("progressBar")
+        self.scanprogressBar = QtWidgets.QProgressBar(self.centralwidget)
+        self.scanprogressBar.setGeometry(QtCore.QRect(720, 600, 191, 23))
+        self.scanprogressBar.setProperty("value", 0)
+        self.scanprogressBar.setObjectName("scanprogressBar")
+        self.spinBox = QtWidgets.QSpinBox(self.centralwidget)
+        self.spinBox.setGeometry(QtCore.QRect(450, 740, 42, 22))
+        self.spinBox.setMinimum(2)
+        self.spinBox.setObjectName("spinBox")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(350, 740, 91, 21))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(350, 720, 101, 21))
+        self.label_2.setObjectName("label_2")
+        self.CPULabel = QtWidgets.QLabel(self.centralwidget)
+        self.CPULabel.setGeometry(QtCore.QRect(450, 720, 41, 16))
+        self.CPULabel.setObjectName("CPULabel")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(520, 580, 54, 12))
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(720, 580, 54, 12))
+        self.label_4.setObjectName("label_4")
+        self.exportButton = QtWidgets.QPushButton(self.centralwidget)
+        self.exportButton.setGeometry(QtCore.QRect(260, 730, 75, 23))
+        self.exportButton.setObjectName("exportButton")
+        self.vtkWidget = QVTKRenderWindowInteractor(self.centralwidget)
+        self.vtkWidget.setGeometry(QtCore.QRect(20, 340, 481, 351))
+        self.vtkWidget.setObjectName("vtkWidget")
+        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        self.textEdit.setGeometry(QtCore.QRect(520, 640, 391, 121))
+        self.textEdit.setReadOnly(True)
+        self.textEdit.setObjectName("textEdit")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 964, 23))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "三维信息重构软件"))
+        self.cvViewer.setText(_translate("MainWindow", "camera ERROR"))
+        self.checkBox.setText(_translate("MainWindow", "开始扫描"))
+        self.surfaceButton.setText(_translate("MainWindow", " 表面重建"))
+        self.calibrateButton.setText(_translate("MainWindow", "相机标定"))
+        self.refreshButton.setText(_translate("MainWindow", "刷新"))
+        self.serialLabel.setText(_translate("MainWindow", "无串口"))
+        self.label.setText(_translate("MainWindow", "计算所用核心数"))
+        self.label_2.setText(_translate("MainWindow", "计算机核心总数："))
+        self.CPULabel.setText(_translate("MainWindow", "nan"))
+        self.label_3.setText(_translate("MainWindow", "扫描进度"))
+        self.label_4.setText(_translate("MainWindow", "提取进度"))
+        self.exportButton.setText(_translate("MainWindow", "导出模型"))
+
+from cvWidget import CVWidget
+from pgWidget import pgWidget
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
