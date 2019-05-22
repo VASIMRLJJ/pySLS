@@ -162,7 +162,8 @@ class CamThread(QThread):
             if img is None:
                 break
             img = img[0:480, 200:600]
-            img = cv2.undistort(img, self.mtx, self.dist, None, self.newcameramtx)
+            if self.mtx is not None:
+                img = cv2.undistort(img, self.mtx, self.dist, None, self.newcameramtx)
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             self.th1 = cv2.GaussianBlur(gray, (3, 3), 1)
             self.img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
