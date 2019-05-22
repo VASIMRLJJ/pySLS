@@ -45,6 +45,9 @@ class CVWidget(QLabel):
             self.camera.CaptureFinished.disconnect(self.pictureUpdate)
             self.camera.CaptureFinished.connect(self.worker)
             self.motion.port = port
+            self.camera.mtx = np.load('cameradata/mtx.npy')
+            self.camera.dist = np.load('cameradata/dist.npy')
+            self.camera.newcameramtx = np.load('cameradata/newcameramtx.npy')
             self.distance = 0
             self.motion.start()
 
@@ -76,19 +79,12 @@ class CVWidget(QLabel):
                               height,
                               QImage.Format_RGB888)
             self.update()
-            # img = QPixmap.fromImage(img)
-            # self.setPixmap(img)
             self.setScaledContents(True)
-            # if not self.finder.finding:
-            #     self.finder.img = self.camera.th1
         except:
             pass
 
     def lineUpdate(self, d):
         self.x = self.finder.x
-        # if not self.fifo.empty():
-        #     self.finder.img = self.fifo.get()
-        #     if d >= 0:
         self.PosFound.emit(self.x, d)
 
     def paintEvent(self, QPaintEvent):
@@ -153,14 +149,9 @@ class CamThread(QThread):
         self.img = None
         self.th1 = None
 
-        self.mtx = np.load('cameradata/mtx.npy')
-        self.dist = np.load('cameradata/dist.npy')
-        self.newcameramtx = np.load('cameradata/newcameramtx.npy')
-
-        # self.x = []
-        # self.finder = CenterFinder()
-        # self.finder.centerFound.connect(self.updateLine)
-        # self.finder.start()
+        self.mtx = None
+        self.dist = None
+        self.newcameramtx = None
 
     def __del__(self):
         self.wait()
@@ -170,27 +161,14 @@ class CamThread(QThread):
             ret, img = self.cap.read()
             if img is None:
                 break
-            # cv2.imread("1.jpg")
-            # print(img.shape)
             img = img[0:480, 200:600]
             img = cv2.undistort(img, self.mtx, self.dist, None, self.newcameramtx)
-            # cv2.imshow('img', img)
-            # cv2.waitKey(0)
             self.th1 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            # ret1, self.th1 = cv2.threshold(emptyImage3, 140, 255, cv2.THRESH_BINARY)
-            # cv2.imshow('video', th1)
-            # cv2.waitKey(30)
 
             self.img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             self.CaptureFinished.emit()
             cv2.waitKey(30)
         self.NoCamera.emit()
-
-    # def updateLine(self):
-    #     if self.th1 is None:
-    #         pass
-    #     self.x = self.finder.x
-    #     self.finder.img = self.th1
 
 
 class CenterFinder(QThread):
