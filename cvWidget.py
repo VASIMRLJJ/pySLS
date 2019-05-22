@@ -163,8 +163,8 @@ class CamThread(QThread):
                 break
             img = img[0:480, 200:600]
             img = cv2.undistort(img, self.mtx, self.dist, None, self.newcameramtx)
-            self.th1 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            self.th1 = cv2.GaussianBlur(gray, (3, 3), 1)
             self.img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             self.CaptureFinished.emit()
             cv2.waitKey(30)
