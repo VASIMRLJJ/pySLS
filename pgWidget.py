@@ -88,7 +88,7 @@ class Reconstructor(QThread):
         self.running = True
         self.reconstruction_status.emit('开始重建...')
         path = os.path.abspath(r'pcl_tools/pcl_normal_estimation_release.exe')
-        os.system(path + ' 1.pcd 2.pcd -radius 10')
+        os.system(path + ' 1.pcd 2.pcd -radius 8')
         self.reconstruction_status.emit('点云提取完成')
         path = os.path.abspath(r'pcl_tools/pcl_poisson_reconstruction_release.exe')
         os.system(path + ' 2.pcd 2.vtk')
