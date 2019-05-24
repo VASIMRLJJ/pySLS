@@ -34,9 +34,13 @@ class Window(QMainWindow):
         self.ui.cvViewer.motion.motionProgress['int'].connect(self.ui.progressBar.setValue)
         self.ui.cvViewer.finder.foundProgress['int'].connect(self.ui.scanprogressBar.setValue)
         self.ui.graphwidget.recon.reconstruction_status.connect(self.ui.textEdit.append)
-        self.ui.graphwidget.recon.reconstruction_done.connect(lambda: self.ui.exportButton.setDisabled(False))
+        self.ui.graphwidget.recon.reconstruction_done.connect(self.recon_done)
         self.ui.spinBox.valueChanged.connect(self.ui.cvViewer.finder.setnump)
         self.ui.exportButton.clicked.connect(self.ui.graphwidget.export)
+
+    def recon_done(self):
+        self.iren.Initialize()
+        self.ui.exportButton.setDisabled(False)
 
     def start_scanning(self):
         if self.ui.serialLabel.text() == '无串口' and self.ui.checkBox.isChecked():
@@ -64,5 +68,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Window()
     window.show()
-    window.iren.Initialize()
     sys.exit(app.exec_())

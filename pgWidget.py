@@ -88,12 +88,11 @@ class Reconstructor(QThread):
         self.running = True
         self.reconstruction_status.emit('开始重建...')
         path = os.path.abspath(r'pcl_tools/pcl_normal_estimation_release.exe')
-        os.system(path + ' 1.pcd 2.pcd -radius 4')
+        os.system(path + ' 1.pcd 2.pcd -radius 10')
         self.reconstruction_status.emit('点云提取完成')
         path = os.path.abspath(r'pcl_tools/pcl_poisson_reconstruction_release.exe')
         os.system(path + ' 2.pcd 2.vtk')
         self.reconstruction_status.emit('重建完成')
-        self.reconstruction_done.emit()
 
         self.vtkWidget.GetRenderWindow().AddRenderer(self.ren)
         source = vtk.vtkPolyDataReader()
@@ -106,4 +105,5 @@ class Reconstructor(QThread):
         actor = vtk.vtkActor()
         actor.SetMapper(mapper)
         self.ren.AddActor(actor)
+        self.reconstruction_done.emit()
         self.running = False
