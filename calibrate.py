@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QDialog, QMessageBox
 import cv2
 import numpy as np
 from ui_calibrateDialog import Ui_CalibrateDialog
+import os
 
 
 class Calibrate(QDialog):
@@ -52,6 +53,7 @@ class Calibrate(QDialog):
         ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(self.objpoints, self.imgpoints, self.gray.shape[::-1], None, None)
         h, w = self.im2.shape[:2]
         newcameramtx, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (w, h), 0, (w, h))
+        os.mkdir('cameradata')
         np.save('cameradata/mtx.npy', mtx)
         np.save('cameradata/dist.npy', dist)
         np.save('cameradata/newcameramtx.npy', newcameramtx)
