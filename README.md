@@ -153,8 +153,6 @@ kevin lee
 将实验台置于黑暗环境下，调整
 “计算所用核心数”的值，勾选“开始扫描”即可开始扫描，扫描过程中进度条分别显示扫描进度与提取进度，如下图所示：
 
-![C:\\Users\\Admin\\AppData\\Roaming\\Tencent\\Users\\451065781\\TIM\\WinTemp\\RichOle\\KQP(D[5Z8GP)X\`E)U\$FB\~%Y.png](media/0a7356bc895888e3e2d2f474711ae80a.png)
-
 ![](media/413356d0a0f59202aff2d713ef883a93.png)
 
 在扫描过程中，左侧点云显示框中显示出点云的三维图像；当两个进度条都为百分之百时，标志着扫描完成。
